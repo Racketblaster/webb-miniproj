@@ -13,8 +13,8 @@ $full_name = "";
 #echo "Num rows: ". $result->num_rows;
 if (($result->num_rows) > 0) {
     while($row = $result->fetch_assoc()) {
-		if($row["userId"] == $_POST["name"] &&
-					$row["passwd"] == $_POST["pass"]) {
+		if($row["name"] == $_POST["name"] &&
+					$row["pass"] == $_POST["pass"]) {
 			$login_success = true;
 		}
 	}

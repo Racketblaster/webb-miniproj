@@ -13,6 +13,11 @@ $passW=$_POST["pass"];
 #Kollar om produkten finns eller inte
 $namnFinnsRedan = false;
 
+#Försök på att fixa om man inte skriver in något som användar namn eller lösenord
+/*if (empty($userN or $passW)){
+    echo("Du glömde skriva in något användarnamn eller lösenord. Försök igen");
+}*/
+
 #Går genom alla rader i databasen tills den hittar något som är likadant som posten
 while($row = $result->fetch_assoc()) {
     if($row["name"] == $userN) {

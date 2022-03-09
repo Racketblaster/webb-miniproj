@@ -9,5 +9,7 @@ CREATE TABLE posts (
   id int(11) NOT NULL AUTO_INCREMENT,
   header varchar(4000) NOT NULL,
   content varchar(4000) NOT NULL,
+  user varchar(4000) NOT NULL,
+  time TIMESTAMP,
   PRIMARY KEY (id)
 );

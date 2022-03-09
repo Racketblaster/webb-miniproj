@@ -11,11 +11,6 @@ $result = $conn->query($sql);
 
 $login_success = false;
 
-if (!empty($_POST["rubrik"])){
-	$_SESSION["rubrik"] = $_POST["rubrik"];
-	$_SESSION["text"] = $_POST["text"];
-}
-
 if (!empty($_POST["pass"])){
 	$_SESSION["name"] = $_POST["name"];
 	$_SESSION["pass"] = $_POST["pass"];
@@ -25,7 +20,7 @@ if (!empty($_POST["pass"])){
 if (($result->num_rows) > 0) {
     while($row = $result->fetch_assoc()) {
 		if($row["name"] == $_SESSION["name"] &&
-					$row["pass"] == $_SESSION["name"]) {
+					$row["pass"] == $_SESSION["pass"]) {
 			$login_success = true;
 		}
 	}
@@ -36,11 +31,41 @@ $conn->close();
 if($login_success) {
 	echo "<h1>Välkommen " . $_SESSION["name"] . " </h1> <hr>";
 	echo"<h2>Vill du skapa en ny tråd?</h2>";
-	echo"<button type='button' onclick=" . "window.location.href='addPost.html'" . ">Skapa en tråd</button>";
+	echo"<button type='button' onclick=" . "window.location.href='addPost.html'" . ">Skapa en tråd</button> <br>";
+	echo"<button type='button' onclick=" . "window.location.href='index.html'" . ">Logga ut</button> <hr>";
+		if (!empty($_POST["rubrik"])){ 
+			$sql = "SELECT * FROM `posts`;";
+			$servername = "localhost";
+			$username = "root";
+			$password = "";
+			$database = "webb-miniproj";
+			$conn = mysqli_connect($servername, $username, $password, $database);
+			$header = $_POST["rubrik"];
+			$text = $_POST["text"];
+			$user = $_SESSION["name"];
+			$sql = "INSERT INTO posts (header, content, user, time) VALUES ('$header', '$text', '$user', now())";
+			$result = $conn->query($sql);
+			$conn->close();
+			$_POST["rubrik"]="";
+		}
+	$sql = "SELECT * FROM `posts`;";
+	$servername = "localhost";
+	$username = "root";
+	$password = "";
+	$database = "webb-miniproj";
+	$conn = mysqli_connect($servername, $username, $password, $database);
+	$result = $conn->query($sql);
+		if (($result->num_rows) > 0) {
+			while($row = $result->fetch_assoc()) {
+				echo  "Header: ". $row["header"] . "<br> Content: " . $row["content"] . "<br> User: " . $row["user"] . "<br> Time: " . $row["time"] .  "<hr>";
+			}
+		} else {
+			echo "0 results";
+		}
 }else {
     echo "Användarnamnet eller lösenordet är fel. Försök igen. ";
 }
 ?>
 <br>
-<button type="button" onclick="window.location.href='index.html'">Logga ut</button>
-<br>
+
+<footer>Copyright © this forum 2022</footer>

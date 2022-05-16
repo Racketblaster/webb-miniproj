@@ -30,7 +30,9 @@ while($row = $result->fetch_assoc()) {
 if ($namnFinnsRedan){
     echo("Användarnamnet " . $userN . " är redan använt");
 } else{
-    $sql = "INSERT INTO user (name, pass) VALUES ('$userN', '$passW')";
+    $encrypted = sha1($passW);
+    $sql = "INSERT INTO user (name, pass) VALUES ('$userN', 
+    '$encrypted')";
     if ($conn->query($sql) === TRUE) {
         echo("Användarnamnet " . $userN . " och lösenordet är registrerat");
     } else {

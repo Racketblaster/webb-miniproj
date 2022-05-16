@@ -8,8 +8,8 @@ $sql = "SELECT * FROM `user`;";
 $result = $conn->query($sql);
 
 $userN=$_POST["name"];
-$passW=$_POST["pass"];
-$nPassW=$_POST["newPass"];
+$passW=sha1($_POST["pass"]);
+$nPassW=sha1($_POST["newPass"]);
 
 #Kollar om produkten finns eller inte
 $rättAnvändare = false;

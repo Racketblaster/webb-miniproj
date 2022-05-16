@@ -5,7 +5,7 @@ CREATE TABLE user (
   PRIMARY KEY (id)
 );
 
-CREATE TABLE posts (
+CREATE TABLE topics (
   id int(11) NOT NULL AUTO_INCREMENT,
   header varchar(4000) NOT NULL,
   content varchar(4000) NOT NULL,

@@ -13,3 +13,12 @@ CREATE TABLE topics (
   time TIMESTAMP,
   PRIMARY KEY (id)
 );
+
+CREATE TABLE posts (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  topicId int(11) NOT NULL,
+  content varchar(4000) NOT NULL,
+  user varchar(4000) NOT NULL,
+  time TIMESTAMP,
+  PRIMARY KEY (id)
+);

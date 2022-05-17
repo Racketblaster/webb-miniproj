@@ -46,3 +46,6 @@ $conn->close();
 ?>
 
 <button type="button" onclick="window.location.href='index.html'">Gå tillbaka</button>
+<br>
+
+<footer>Copyright © this forum 2022</footer>

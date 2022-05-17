@@ -11,14 +11,17 @@ $result = $conn->query($sql);
 
 $login_success = false;
 
+
+if (!empty($_POST["pass"])){
+	$_SESSION["name"] = $_POST["name"];
+	$_SESSION["pass"] = sha1($_POST["pass"]);
+}
+
 #echo "Num rows: ". $result->num_rows;
 if (($result->num_rows) > 0) {
     while($row = $result->fetch_assoc()) {
-		if (!empty($_POST["pass"])){
-			$_SESSION["name"] = $_POST["name"];
-			$_SESSION["pass"] = sha1($_POST["pass"]);
-			if($row["name"] == $_SESSION["name"] &&
-						$row["pass"] == $_SESSION["pass"]) {
+		if (!empty($_SESSION["pass"]) || !empty($_SESSION["pass"])){
+			if($row["name"] == $_SESSION["name"] &&	$row["pass"] == $_SESSION["pass"]) {
 				$login_success = true;
 			}
 		}
@@ -55,11 +58,14 @@ if($login_success) {
 	$result = $conn->query($sql);
 		if (($result->num_rows) > 0) {
 			while($row = $result->fetch_assoc()) {
-                echo "<form action='readTopic.php' method='post'> 
-				<input type='submit' value='Läs'> 
+			echo"<form action='readTopic.php' method='POST'>
+				Kommentera på tråden: <br>
+				<input type='hidden' name='id' value='" . $row["id"] . "'>
+				<input type='hidden' name='header' value='" . $row["header"] . "'>
+				<input type='submit' value ='Läs inlägg'>
 				</form>";
 				
-				echo  "Header: ". $row["header"] . "<br> Content: " . $row["content"] . "<br> User: " . $row["user"] . "<br> Time: " . $row["time"] .  "<hr>";
+				echo "Header: ". $row["header"] . "<br> Content: " . $row["content"] . "<br> User: " . $row["user"] . "<br> Time: " . $row["time"] .  "<hr>";
 			}
 		} else {
 			echo "0 results";

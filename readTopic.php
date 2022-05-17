@@ -29,7 +29,8 @@ $conn = mysqli_connect($servername, $username, $password, $database);
 	$result = $conn->query($sql);
 		if (($result->num_rows) > 0) {
 			while($row = $result->fetch_assoc()) {
-				echo "Content: " . $row["content"] . "<br> User: " . $row["user"] . "<br> Time: " . $row["time"] .  "<hr>";
+				echo "User: " . $row["user"] . ". <br> Skrev klockan: " . $row["time"] .  "<br>";
+				echo '<span style="word-break: break-word;">' . "Inlägg: " . $row["content"] . "</span><hr>";
 			}
 		} else {
 			echo "0 results <br>";

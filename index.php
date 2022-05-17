@@ -58,14 +58,14 @@ if($login_success) {
 	$result = $conn->query($sql);
 		if (($result->num_rows) > 0) {
 			while($row = $result->fetch_assoc()) {
-			echo"<form action='readTopic.php' method='POST'>
-				Kommentera på tråden: <br>
-				<input type='hidden' name='id' value='" . $row["id"] . "'>
-				<input type='hidden' name='header' value='" . $row["header"] . "'>
-				<input type='submit' value ='Läs inlägg'>
-				</form>";
-				
-				echo "Header: ". $row["header"] . "<br> Content: " . $row["content"] . "<br> User: " . $row["user"] . "<br> Time: " . $row["time"] .  "<hr>";
+				echo "Titel: ". $row["header"] . "<br> Skapad av: " . $row["user"] . " <br> Klockan: " . $row["time"];
+				echo"<form action='readTopic.php' method='POST'>
+					Kolla på tråden: <br>
+					<input type='hidden' name='id' value='" . $row["id"] . "'>
+					<input type='hidden' name='header' value='" . $row["header"] . "'>
+					<input type='submit' value ='Läs inlägg'>
+					</form>";
+				echo"<hr>";
 			}
 		} else {
 			echo "0 results";

@@ -36,7 +36,7 @@ while($row = $result->fetch_assoc()) {
 
 #Om namnet inte finns så insertas användar namnet och lösenordet i databasen, annars säger programmet att användarnamnet finns redan
 if (!$rättAnvändare){
-    echo("Antingen så finns inte användaren eller så skrev du fel på det gamla lösenordet. ");
+    echo("Antingen finns inte användaren eller så skrev du fel på det gamla lösenordet. ");
 } else{
     $sql = "update user SET pass='$nPassW' WHERE name='$userN'";
     if ($conn->query($sql) === TRUE) {

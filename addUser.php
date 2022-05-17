@@ -28,15 +28,15 @@ while($row = $result->fetch_assoc()) {
 
 #Om namnet inte finns så insertas användar namnet och lösenordet i databasen, annars säger programmet att användarnamnet finns redan
 if ($namnFinnsRedan){
-    echo("Användarnamnet " . $userN . " är redan använt");
+    echo("Användarnamnet " . $userN . " är redan använt, tästa något annat.");
 } else{
     $encrypted = sha1($passW);
     $sql = "INSERT INTO user (name, pass) VALUES ('$userN', 
     '$encrypted')";
     if ($conn->query($sql) === TRUE) {
-        echo("Användarnamnet " . $userN . " och lösenordet är registrerat");
+        echo("Användarnamnet " . $userN . " och lösenordet är registrerat. ");
     } else {
-        echo "Något gick fel, försök igen" . "<br>" . $conn->error;
+        echo "Något gick fel, försök igen. " . "<br>" . $conn->error;
     }
 }
 

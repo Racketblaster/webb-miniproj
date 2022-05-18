@@ -43,9 +43,8 @@ if($login_success) {
 			$database = "webb-miniproj";
 			$conn = mysqli_connect($servername, $username, $password, $database);
 			$header = $_POST["rubrik"];
-			$text = $_POST["text"];
 			$user = $_SESSION["name"];
-			$sql = "INSERT INTO topics (header, content, user, time) VALUES ('$header', '$text', '$user', now())";
+			$sql = "INSERT INTO topics (header, user, time) VALUES ('$header', '$user', now())";
 			$result = $conn->query($sql);
 			$conn->close();
 		}

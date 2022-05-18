@@ -24,7 +24,7 @@ if (!empty($_POST["post"])){
 	$result = $conn->query($sql);
 	$conn->close();
     echo "Det nya inlägget sparades. =) <br>";
-} else{
+}else{
     echo"Något gick fel när du skulle göra ett nytt inlägg. =( <br>";
 }
 ?>

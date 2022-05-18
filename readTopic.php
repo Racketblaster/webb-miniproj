@@ -11,7 +11,7 @@ $result = $conn->query($sql);
 $id=$_POST["id"];
 $header=$_POST["header"];
 
-echo "<h1>Tråd: " . $header . "</h1> <hr>";
+echo "<h1>Inlägg: " . str_replace('>','/&gt',(str_replace('<','&lt',$header))) . "</h1> <hr>";
 	echo"<h2> Du är inloggad som: "  . $_SESSION["name"] . "</h2> <br>";
 	echo"<button type='button' onclick=" . "window.location.href='index.php'" . ">Gå tillbaka</button> 
 	<button type='button' onclick=" . "window.location.href='logout.php'" . ">Logga ut</button> <hr>";
@@ -30,7 +30,7 @@ $conn = mysqli_connect($servername, $username, $password, $database);
 		if (($result->num_rows) > 0) {
 			while($row = $result->fetch_assoc()) {
 				echo "User: " . $row["user"] . ". <br> Skrev klockan: " . $row["time"] .  "<br>";
-				echo '<span style="word-break: break-word;">' . "Inlägg: " . $row["content"] . "</span><hr>";
+				echo '<span style="word-break: break-word;">' . "Inlägg: " . str_replace('>','/&gt',(str_replace('<','&lt',$row["content"]))) . "</span><hr>";
 			}
 		} else {
 			echo "0 results <br>";
